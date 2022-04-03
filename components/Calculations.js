@@ -63,13 +63,21 @@ export default function Calculations() {
 
   const handleDailyMlChange = (newValue) => setDailyDrinkMl(newValue)
 
-  const mlPerUnit = (index) => (form.values.products[index].gramsPerUnit / 8.5) * 60
+  const mlPerUnit = (index) => form.values.products[index].gramsPerUnit
+    ? (form.values.products[index].gramsPerUnit / 8.5) * 60
+    : 0
 
-  const daysProductWillLast = (index) => mlPerUnit(index) / dailyDrinkMl
+  const daysProductWillLast = (index) => mlPerUnit(index)
+    ? mlPerUnit(index) / dailyDrinkMl
+    : 0
 
-  const unitsNeededPerMonth = (index) => Math.ceil(((365 / 12) * dailyDrinkMl) / mlPerUnit(index))
+  const unitsNeededPerMonth = (index) => mlPerUnit(index)
+    ? Math.ceil(((365 / 12) * dailyDrinkMl) / mlPerUnit(index))
+    : 0
 
-  const monthlyPrice = (index) => form.values.products[index].price * unitsNeededPerMonth(index) * 1.14975
+  const monthlyPrice = (index) => unitsNeededPerMonth(index)
+    ? form.values.products[index].price * unitsNeededPerMonth(index) * 1.14975
+    : 0
 
   useEffect(() => {
     if (syncLocalStorageProducts) {
@@ -106,7 +114,6 @@ export default function Calculations() {
                 required
                 label="Nom du produit"
                 placeholder="Produit"
-                autoFocus
                 sx={{flex: 1, minWidth: 245}}
                 {...form.getListInputProps("products", index, 'productName')}
               />
