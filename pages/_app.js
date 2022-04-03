@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import {MantineProvider} from '@mantine/core';
-import Layout from "../components/Layout/Layout";
+import Layout from "../components/Layout";
 
 function MyApp({Component, pageProps}) {
   return (

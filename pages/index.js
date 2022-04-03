@@ -1,18 +1,17 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Form from "../components/Form/Form";
+import Calculations from "../components/Calculations";
 
 export default function Home() {
   return (
-    <div className="page-container">
+    <>
       <Head>
-        <title>BébéCalculs</title>
+        <title>
+          BébéCalculs - Calcul des prix et quantités requises pour nourrir bébé avec la préparation
+          commerciale.
+        </title>
       </Head>
 
-      <main>
-       <Form/>
-      </main>
-
-    </div>
+      <Calculations/>
+    </>
   )
 }
