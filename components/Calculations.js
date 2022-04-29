@@ -76,7 +76,7 @@ export default function Calculations() {
     : 0
 
   const monthlyPrice = (index) => unitsNeededPerMonth(index)
-    ? form.values.products[index].price * unitsNeededPerMonth(index) * 1.14975
+    ? form.values.products[index].price * unitsNeededPerMonth(index)
     : 0
 
   useEffect(() => {
@@ -114,48 +114,53 @@ export default function Calculations() {
                 required
                 label="Nom du produit"
                 placeholder="Produit"
+                autoComplete="off"
                 sx={{flex: 1, minWidth: 245}}
                 {...form.getListInputProps("products", index, 'productName')}
               />
               <NumberInput
                 required
-                label="Prix par unité"
+                label="Prix unité"
                 placeholder="$ / unité"
                 hideControls
                 min={0}
                 precision={2}
                 decimalSeparator="."
+                sx={{width: "11ch"}}
                 {...form.getListInputProps("products", index, 'price')}
               />
               <NumberInput
-                label="Grammes par unité"
+                label="Grammes unité"
                 placeholder="g / unité"
                 hideControls
                 min={0}
                 precision={2}
                 decimalSeparator="."
+                sx={{width: "11ch"}}
                 {...form.getListInputProps("products", index, 'gramsPerUnit')}
               />
               <NumberInput
-                label="Millilitres par unité"
+                label="Millilitres unité"
                 placeholder="ml / unité"
                 hideControls
                 variant="filled"
                 readOnly
+                sx={{width: "11ch"}}
                 value={mlPerUnit(index)}
               />
               <NumberInput
-                label="Durée du produit en jours"
+                label="Durée en jours"
                 placeholder="Durée"
                 hideControls
                 variant="filled"
                 precision={1}
                 readOnly
                 decimalSeparator="."
+                sx={{width: "11ch"}}
                 value={daysProductWillLast(index)}
               />
               <NumberInput
-                label="Unités par mois"
+                label="Unités requises par mois"
                 placeholder="Qté à acheter par mois"
                 hideControls
                 variant="filled"
@@ -171,6 +176,7 @@ export default function Calculations() {
                 precision={2}
                 readOnly
                 decimalSeparator="."
+                sx={{width: "11ch"}}
                 value={monthlyPrice(index)}
               />
               <ActionIcon
